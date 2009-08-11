@@ -17,6 +17,7 @@ class CIJoe
         puts "\tpass = passw0rd"
         puts "\tsubdomain = whatever"
         puts "\troom = Awesomeness"
+        puts "\tssl = false"
       end
     end
 
@@ -26,11 +27,12 @@ class CIJoe
         :user      => Config.campfire.user.to_s,
         :pass      => Config.campfire.pass.to_s,
         :room      => Config.campfire.room.to_s,
+        :ssl       => Config.campfire.ssl.to_s == 'true'
       }
     end
 
     def self.valid_config?
-      config.all? { |key, value| !value.empty? }
+      config.all? { |key, value| !value.nil? }
     end
 
     def notify
